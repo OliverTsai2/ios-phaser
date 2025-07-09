@@ -10,6 +10,7 @@ let gameInstance: Phaser.Game | null = null;
 
 var winH = window.innerHeight
 var winW = window.innerWidth
+var dpr = window.devicePixelRatio || 1;
 
 var H5 = winH > winW
 var isGullScreen = winH/winW; //是否是全面屏
@@ -32,6 +33,9 @@ function calculateCanvasSize() {
   }
   
   bl = canW / 640;
+
+  canH *= dpr;
+  canW *= dpr;
   
   // 如果遊戲實例存在，則調整其大小
   if (gameInstance) {
@@ -59,7 +63,7 @@ const config = {
     parent: 'game-container',
     pixelArt: true,
     backgroundColor: '#000000',
-    resolution: Math.max(window.devicePixelRatio, 2),
+    resolution: dpr,
     scene: [
         Boot,
         Preloader,
