@@ -9,22 +9,28 @@ export class Preloader extends Scene
 
     init ()
     {
+        // 獲取當前遊戲的實際寬高
+        const { width, height } = this.scale;
         //  We loaded this image in our Boot Scene, so we can display it here
-        this.add.image(512, 384, 'background');
+        this.add.image(width / 2, height / 2, 'background');
 
-        //  A simple progress bar. This is the outline of the bar.
-        this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
+        // 進度條外框 - 使用相對位置
+        const barWidth = Math.min(width * 0.8, 468); // 進度條寬度為畫面寬度的80%，但最大不超過468
+        const barHeight = 32;
+        this.add.rectangle(width / 2, height / 2, barWidth, barHeight).setStrokeStyle(1, 0xffffff);
 
-        //  This is the progress bar itself. It will increase in size from the left based on the % of progress.
-        const bar = this.add.rectangle(512-230, 384, 4, 28, 0xffffff);
+        // 進度條 - 使用相對位置
+        const bar = this.add.rectangle(width / 2 - barWidth / 2 + 2, height / 2, 4, barHeight - 4, 0xffffff);
 
-        //  Use the 'progress' event emitted by the LoaderPlugin to update the loading bar
+        // 使用 'progress' 事件更新進度條
         this.load.on('progress', (progress: number) => {
-
-            //  Update the progress bar (our bar is 464px wide, so 100% = 464px)
-            bar.width = 4 + (460 * progress);
-
+            // 更新進度條寬度
+            bar.width = 4 + ((barWidth - 8) * progress);
         });
+
+        // 設置遊戲縮放模式
+        this.scale.scaleMode = Phaser.Scale.FIT; // 使用 FIT 模式自適應螢幕
+        this.scale.refresh(); // 刷新縮放
     }
 
     preload ()
@@ -32,8 +38,11 @@ export class Preloader extends Scene
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
 
-        this.load.image('logo', 'logo.png');
-        this.load.image('star', 'star.png');
+        this.load.image('otherch3', 'otherch3.png');
+        this.load.image('btn-play', 'btn-play.png');
+        this.load.image('Table','Table.png');
+        this.load.image('myBrand','myBrand.png');
+        this.load.image('actionButton','actionButton.png');
     }
 
     create ()

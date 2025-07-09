@@ -5,8 +5,9 @@ import { EventBus } from '../EventBus';
 export class MainMenu extends Scene
 {
     background: GameObjects.Image;
-    logo: GameObjects.Image;
+    Table: GameObjects.Image;
     title: GameObjects.Text;
+    player: GameObjects.Image;
     logoTween: Phaser.Tweens.Tween | null;
 
     constructor ()
@@ -16,15 +17,28 @@ export class MainMenu extends Scene
 
     create ()
     {
-        this.background = this.add.image(512, 384, 'background');
+        // 取得當前螢幕大小
+        const { width, height } = this.scale;
 
-        this.logo = this.add.image(512, 300, 'logo').setDepth(100);
+        // 添加背景圖片
+        this.background = this.add.image(width / 2, height / 2, 'background')
+            .setDisplaySize(width, height); // 設定寬高以適應螢幕
 
-        this.title = this.add.text(512, 460, 'Main Menu', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
+        // 添加背景2
+        this.Table = this.add.image(width/2, height/2 + 20, 'Table')
+            .setScale(0.5);
+
+        this.title = this.add.text(width/2, height/2, '文字測試123', {
+            fontFamily: 'Arial Black',
+            fontSize: 16,
+            color: '#ffffff',
+            stroke: '#000000', 
+            strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
+
+        this.player = this.add.image(width/2, height/2 + 120, 'otherch3')
+            .setScale(0.5);
 
         EventBus.emit('current-scene-ready', this);
     }
@@ -40,37 +54,4 @@ export class MainMenu extends Scene
         this.scene.start('Game');
     }
 
-    moveLogo (vueCallback: ({ x, y }: { x: number, y: number }) => void)
-    {
-        if (this.logoTween)
-        {
-            if (this.logoTween.isPlaying())
-            {
-                this.logoTween.pause();
-            }
-            else
-            {
-                this.logoTween.play();
-            }
-        } 
-        else
-        {
-            this.logoTween = this.tweens.add({
-                targets: this.logo,
-                x: { value: 750, duration: 3000, ease: 'Back.easeInOut' },
-                y: { value: 80, duration: 1500, ease: 'Sine.easeOut' },
-                yoyo: true,
-                repeat: -1,
-                onUpdate: () => {
-                    if (vueCallback)
-                    {
-                        vueCallback({
-                            x: Math.floor(this.logo.x),
-                            y: Math.floor(this.logo.y)
-                        });
-                    }
-                }
-            });
-        }
-    }
 }
