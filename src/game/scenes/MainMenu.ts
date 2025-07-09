@@ -6,7 +6,7 @@ export class MainMenu extends Scene
 {
     background: GameObjects.Image;
     Table: GameObjects.Image;
-    title: GameObjects.Text;
+    title:  (GameObjects.Text | null)[] = [];
     player: GameObjects.Image;
     logoTween: Phaser.Tweens.Tween | null;
 
@@ -28,14 +28,46 @@ export class MainMenu extends Scene
         this.Table = this.add.image(width/2, height/2 + 20, 'Table')
             .setScale(0.5);
 
-        this.title = this.add.text(width/2, height/2, '文字測試123', {
+        const title = this.add.text(width/2, height/2, '大小16邊線5：文字測試123', {
             fontFamily: 'Arial Black',
             fontSize: 16,
+            color: '#ffffff',
+            stroke: '#000000', 
+            strokeThickness: 5,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(100);
+
+        const title2 = this.add.text(width/2, height/2 + 30, '大小12：playerBetChipImages', {
+            fontFamily: 'Arial Black',
+            fontSize: 12,
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
+
+        const title3 = this.add.text(width/2, height/2 - 30, '大小16邊線3：文字測試123', {
+            fontFamily: 'Arial Black',
+            fontSize: 16,
+            color: '#ffffff',
+            stroke: '#000000', 
+            strokeThickness: 3,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(100);
+
+        const title4 = this.add.text(width/2, height/2 - 60, '大小16邊線1：文字測試123', {
+            fontFamily: 'Arial Black',
+            fontSize: 16,
+            color: '#ffffff',
+            stroke: '#000000', 
+            strokeThickness: 1,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(100);
+
+        this.title.push(title);
+        this.title.push(title2);
+        this.title.push(title3);
+        this.title.push(title4);
 
         this.player = this.add.image(width/2, height/2 + 120, 'otherch3')
             .setScale(0.5);
