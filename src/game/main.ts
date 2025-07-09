@@ -9,8 +9,8 @@ import { Preloader } from './scenes/Preloader';
 let gameInstance: Phaser.Game | null = null;
 
 // 基準設計尺寸
-const BASE_WIDTH = 640;
-const BASE_HEIGHT = 1136;
+const BASE_WIDTH = 1080;
+const BASE_HEIGHT = 1920;
 
 var winH = window.innerHeight
 var winW = window.innerWidth

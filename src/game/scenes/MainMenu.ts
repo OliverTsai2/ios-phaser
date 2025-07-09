@@ -27,38 +27,38 @@ export class MainMenu extends Scene
 
         // 添加背景2
         this.Table = this.add.image(width/2, height/2 + 20, 'Table')
-            .setScale(1.8);
+            .setScale(3);
 
-        const title = this.add.text(width/2, height/2, '大小64邊線5：文字測試123', {
+        const title = this.add.text(width/2, height/2, '大小108邊線5：文字測試123', {
             fontFamily: 'Arial Black',
-            fontSize: 64,
+            fontSize: 108,
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 5,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        const title2 = this.add.text(width/2, height/2 + 60, '大小48：playerBetChipImages', {
+        const title2 = this.add.text(width/2, height/2 + 160, '大小72：playerBetChipImages', {
             fontFamily: 'Arial Black',
-            fontSize: 48,
+            fontSize: 72,
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 1,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        const title3 = this.add.text(width/2, height/2 - 60, '大小64邊線3：文字測試123', {
+        const title3 = this.add.text(width/2, height/2 - 160, '大小108邊線3：文字測試123', {
             fontFamily: 'Arial Black',
-            fontSize: 64,
+            fontSize: 108,
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 3,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        const title4 = this.add.text(width/2, height/2 - 120, '大小64邊線1：文字測試123', {
+        const title4 = this.add.text(width/2, height/2 - 320, '大小108邊線1：文字測試123', {
             fontFamily: 'Arial Black',
-            fontSize: 64,
+            fontSize: 108,
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 1,
@@ -70,8 +70,8 @@ export class MainMenu extends Scene
         this.title.push(title3);
         this.title.push(title4);
 
-        this.player = this.add.image(width/2, height/2 + 380, 'otherch3')
-            .setScale(1.8);
+        this.player = this.add.image(width/2, height/2 + 580, 'otherch3')
+            .setScale(3);
 
         EventBus.emit('current-scene-ready', this);
     }
