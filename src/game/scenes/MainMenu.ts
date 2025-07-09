@@ -9,6 +9,7 @@ export class MainMenu extends Scene
     title:  (GameObjects.Text | null)[] = [];
     player: GameObjects.Image;
     logoTween: Phaser.Tweens.Tween | null;
+    refreshButton: GameObjects.Text;
 
     constructor ()
     {
@@ -26,38 +27,38 @@ export class MainMenu extends Scene
 
         // 添加背景2
         this.Table = this.add.image(width/2, height/2 + 20, 'Table')
-            .setScale(1);
+            .setScale(1.8);
 
-        const title = this.add.text(width/2, height/2, '大小16邊線5：文字測試123', {
+        const title = this.add.text(width/2, height/2, '大小64邊線5：文字測試123', {
             fontFamily: 'Arial Black',
-            fontSize: 16,
+            fontSize: 64,
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 5,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        const title2 = this.add.text(width/2, height/2 + 30, '大小32：playerBetChipImages', {
+        const title2 = this.add.text(width/2, height/2 + 60, '大小48：playerBetChipImages', {
             fontFamily: 'Arial Black',
-            fontSize: 32,
+            fontSize: 48,
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 1,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        const title3 = this.add.text(width/2, height/2 - 30, '大小16邊線3：文字測試123', {
+        const title3 = this.add.text(width/2, height/2 - 60, '大小64邊線3：文字測試123', {
             fontFamily: 'Arial Black',
-            fontSize: 16,
+            fontSize: 64,
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 3,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        const title4 = this.add.text(width/2, height/2 - 60, '大小16邊線1：文字測試123', {
+        const title4 = this.add.text(width/2, height/2 - 120, '大小64邊線1：文字測試123', {
             fontFamily: 'Arial Black',
-            fontSize: 16,
+            fontSize: 64,
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 1,
@@ -69,8 +70,8 @@ export class MainMenu extends Scene
         this.title.push(title3);
         this.title.push(title4);
 
-        this.player = this.add.image(width/2, height/2 + 220, 'otherch3')
-            .setScale(1);
+        this.player = this.add.image(width/2, height/2 + 380, 'otherch3')
+            .setScale(1.8);
 
         EventBus.emit('current-scene-ready', this);
     }

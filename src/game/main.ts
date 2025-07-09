@@ -8,6 +8,10 @@ import { Preloader } from './scenes/Preloader';
 // 創建一個標誌變量，確保遊戲只被初始化一次
 let gameInstance: Phaser.Game | null = null;
 
+// 基準設計尺寸
+const BASE_WIDTH = 640;
+const BASE_HEIGHT = 1136;
+
 var winH = window.innerHeight
 var winW = window.innerWidth
 var dpr = window.devicePixelRatio || 1;
@@ -18,30 +22,43 @@ var canH,canW,bl;
 
 // 計算畫布尺寸的函數
 function calculateCanvasSize() {
-  H5 = winH > winW;
-  isGullScreen = winH/winW;
-  
-  if(isGullScreen > 1.9 && H5){
-    canW = winW;
-    canH = winH;
-  }else if(H5 && isGullScreen<1.9){
-    canH = winH;
-    canW = canH*640/1136;
-  }else{
-    canW = winH*640/1136;
-    canH = winH;
-  }
-  
-  bl = canW / 640;
+    H5 = winH > winW;
+    isGullScreen = winH/winW;
+    
+    if(isGullScreen > 1.9 && H5){
+        // canW = winW;
+        // canH = winH;
 
-  canH *= dpr;
-  canW *= dpr;
-  
-  // 如果遊戲實例存在，則調整其大小
-  if (gameInstance) {
-    gameInstance.scale.resize(canW, canH);
-    gameInstance.scale.refresh();
-  }
+        // 全面屏手機，保持寬度適應，高度可能超出基準比例
+        canW = BASE_WIDTH;
+        canH = BASE_WIDTH * (winH / winW);
+    }else if(H5 && isGullScreen<1.9){
+        // canH = winH;
+        // canW = canH*640/1136;
+
+        // 一般豎屏設備，保持基準比例
+        canH = BASE_HEIGHT;
+        canW = BASE_WIDTH;
+    }else{
+        // canW = winH*640/1136;
+        // canH = winH;
+
+        // 橫屏設備，保持基準比例
+        canW = BASE_HEIGHT;
+        canH = BASE_WIDTH;
+    }
+    
+    // bl = canW / 640;
+    bl = canW / BASE_WIDTH;
+
+    canH *= dpr;
+    canW *= dpr;
+    
+    // 如果遊戲實例存在，則調整其大小
+    if (gameInstance) {
+        gameInstance.scale.resize(canW, canH);
+        gameInstance.scale.refresh();
+    }
 }
 
 // 初始計算
@@ -49,8 +66,6 @@ calculateCanvasSize();
 
 // 監聽窗口大小變化
 window.addEventListener('resize', () => {
-  winW = window.innerWidth;
-  winH = window.innerHeight;
   calculateCanvasSize(); // 重新計算並應用新尺寸
 });
 
@@ -64,6 +79,7 @@ const config = {
     pixelArt: true,
     backgroundColor: '#000000',
     resolution: dpr,
+    autoRound: true,
     scene: [
         Boot,
         Preloader,
