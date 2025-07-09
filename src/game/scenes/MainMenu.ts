@@ -27,7 +27,7 @@ export class MainMenu extends Scene
 
         // 添加背景2
         this.Table = this.add.image(width/2, height/2 + 20, 'Table')
-            .setScale(3);
+            // .setScale(3);
 
         const title = this.add.text(width/2, height/2, '大小108邊線5：文字測試123', {
             fontFamily: 'Arial Black',

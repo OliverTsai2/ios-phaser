@@ -8,9 +8,9 @@ import { Preloader } from './scenes/Preloader';
 // 創建一個標誌變量，確保遊戲只被初始化一次
 let gameInstance: Phaser.Game | null = null;
 
-// 基準設計尺寸
-const BASE_WIDTH = 1080;
-const BASE_HEIGHT = 1920;
+// 基準設計尺寸 在電腦設計時要用1080*1920 傳送到手機 640*1136
+const BASE_WIDTH = 640;
+const BASE_HEIGHT = 1136;
 
 var winH = window.innerHeight
 var winW = window.innerWidth
@@ -22,6 +22,8 @@ var canH,canW,bl;
 
 // 計算畫布尺寸的函數
 function calculateCanvasSize() {
+    winH = window.innerHeight;
+    winW = window.innerWidth;
     H5 = winH > winW;
     isGullScreen = winH/winW;
     
@@ -32,20 +34,23 @@ function calculateCanvasSize() {
         // 全面屏手機，保持寬度適應，高度可能超出基準比例
         canW = BASE_WIDTH;
         canH = BASE_WIDTH * (winH / winW);
+        console.log('全面屏手機', canW, canH);
     }else if(H5 && isGullScreen<1.9){
         // canH = winH;
         // canW = canH*640/1136;
 
         // 一般豎屏設備，保持基準比例
-        canH = BASE_HEIGHT;
         canW = BASE_WIDTH;
+        canH = BASE_HEIGHT;
+        console.log('一般豎屏設備', canW, canH);
     }else{
         // canW = winH*640/1136;
         // canH = winH;
 
         // 橫屏設備，保持基準比例
-        canW = BASE_HEIGHT;
-        canH = BASE_WIDTH;
+        canH = BASE_HEIGHT;
+        canW = BASE_WIDTH;
+        console.log('橫屏設備', canW, canH);
     }
     
     // bl = canW / 640;
@@ -95,6 +100,7 @@ const config = {
     scale: {
         mode: Scale.FIT,  // 自動縮放遊戲來適應視窗
         autoCenter: Scale.CENTER_BOTH, // 居中顯示遊戲
+        orientation: Scale.PORTRAIT, // 強制豎屏方向
     },
 } as unknown as Phaser.Types.Core.GameConfig;
 
