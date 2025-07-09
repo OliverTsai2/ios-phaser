@@ -26,7 +26,7 @@ export class MainMenu extends Scene
 
         // 添加背景2
         this.Table = this.add.image(width/2, height/2 + 20, 'Table')
-            .setScale(0.5);
+            .setScale(1);
 
         const title = this.add.text(width/2, height/2, '大小16邊線5：文字測試123', {
             fontFamily: 'Arial Black',
@@ -37,12 +37,12 @@ export class MainMenu extends Scene
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
-        const title2 = this.add.text(width/2, height/2 + 30, '大小12：playerBetChipImages', {
+        const title2 = this.add.text(width/2, height/2 + 30, '大小32：playerBetChipImages', {
             fontFamily: 'Arial Black',
-            fontSize: 12,
+            fontSize: 32,
             color: '#ffffff',
             stroke: '#000000', 
-            strokeThickness: 8,
+            strokeThickness: 1,
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
@@ -69,8 +69,8 @@ export class MainMenu extends Scene
         this.title.push(title3);
         this.title.push(title4);
 
-        this.player = this.add.image(width/2, height/2 + 120, 'otherch3')
-            .setScale(0.5);
+        this.player = this.add.image(width/2, height/2 + 220, 'otherch3')
+            .setScale(1);
 
         EventBus.emit('current-scene-ready', this);
     }
