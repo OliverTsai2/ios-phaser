@@ -27,43 +27,43 @@ export class MainMenu extends Scene
 
         // 添加背景2
         this.Table = this.add.image(width/2, height/2 + 20, 'Table')
-            // .setScale(3);
+            .setScale(3);
 
-        const title = this.add.text(width/2, height/2, '大小108邊線5：文字測試123', {
-            fontFamily: 'Arial Black',
-            fontSize: 108,
+        const title = this.add.text(width/2, height/2, '大小36邊線5：文字測試123', {
+            fontFamily: 'Arial',
+            fontSize: '36px',
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 5,
             align: 'center'
-        }).setOrigin(0.5).setDepth(100);
+        }).setOrigin(0.5).setDepth(100).setScale(3);
 
         const title2 = this.add.text(width/2, height/2 + 160, '大小72：playerBetChipImages', {
-            fontFamily: 'Arial Black',
-            fontSize: 72,
+            fontFamily: 'Arial',
+            fontSize: '36px',
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 1,
             align: 'center'
-        }).setOrigin(0.5).setDepth(100);
+        }).setOrigin(0.5).setDepth(100).setScale(3);
 
         const title3 = this.add.text(width/2, height/2 - 160, '大小108邊線3：文字測試123', {
-            fontFamily: 'Arial Black',
-            fontSize: 108,
+            fontFamily: 'Arial',
+            fontSize: '36px',
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 3,
             align: 'center'
-        }).setOrigin(0.5).setDepth(100);
+        }).setOrigin(0.5).setDepth(100).setScale(3);
 
         const title4 = this.add.text(width/2, height/2 - 320, '大小108邊線1：文字測試123', {
-            fontFamily: 'Arial Black',
-            fontSize: 108,
+            fontFamily: 'Arial',
+            fontSize: '36px',
             color: '#ffffff',
             stroke: '#000000', 
             strokeThickness: 1,
             align: 'center'
-        }).setOrigin(0.5).setDepth(100);
+        }).setOrigin(0.5).setDepth(100).setScale(3);
 
         this.title.push(title);
         this.title.push(title2);

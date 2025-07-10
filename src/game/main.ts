@@ -9,8 +9,8 @@ import { Preloader } from './scenes/Preloader';
 let gameInstance: Phaser.Game | null = null;
 
 // 基準設計尺寸 在電腦設計時要用1080*1920 傳送到手機 640*1136
-const BASE_WIDTH = 640;
-const BASE_HEIGHT = 1136;
+const BASE_WIDTH = 1080;
+const BASE_HEIGHT = 1920;
 
 var winH = window.innerHeight
 var winW = window.innerWidth
@@ -83,7 +83,7 @@ const config = {
     parent: 'game-container',
     pixelArt: true,
     backgroundColor: '#000000',
-    resolution: dpr,
+    resolution: Math.min(window.devicePixelRatio, 2),
     autoRound: true,
     scene: [
         Boot,
@@ -96,6 +96,8 @@ const config = {
         antialias: true, // ✅ 關鍵：禁用抗鋸齒（會導致模糊）
         pixelArt: false,     // ✅ 雙保險：確保 pixel 精準顯示
         clearBeforeRender: true,
+        failIfMajorPerformanceCaveat: false, // 避免低階設備中斷
+        powerPreference: 'high-performance', // 優先使用高性能 GPU
     },
     scale: {
         mode: Scale.FIT,  // 自動縮放遊戲來適應視窗
