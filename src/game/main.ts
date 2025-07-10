@@ -8,13 +8,16 @@ import { Preloader } from './scenes/Preloader';
 // 創建一個標誌變量，確保遊戲只被初始化一次
 let gameInstance: Phaser.Game | null = null;
 
-// 基準設計尺寸 在電腦設計時要用1080*1920 傳送到手機 640*1136
+// 基準設計尺寸 在電腦設計時要用640*1136 傳送到手機 375*667
+// const BASE_WIDTH = 640;
+// const BASE_HEIGHT = 1136;
+
 const BASE_WIDTH = 375;
 const BASE_HEIGHT = 667;
 
 var winH = window.innerHeight
 var winW = window.innerWidth
-var dpr = window.devicePixelRatio || 1;
+var dpr = Math.min(window.devicePixelRatio || 1, 2);
 
 var H5 = winH > winW
 var isGullScreen = winH/winW; //是否是全面屏
@@ -71,7 +74,9 @@ calculateCanvasSize();
 
 // 監聽窗口大小變化
 window.addEventListener('resize', () => {
-  calculateCanvasSize(); // 重新計算並應用新尺寸
+    winH = window.innerHeight;
+    winW = window.innerWidth;
+    calculateCanvasSize(); // 重新計算並應用新尺寸
 });
 
 const config = {

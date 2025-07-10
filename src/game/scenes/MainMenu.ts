@@ -27,7 +27,7 @@ export class MainMenu extends Scene
 
         // 添加背景2
         this.Table = this.add.image(width/2, height/2 + 20, 'Table')
-            .setScale(3);
+            .setScale(1);
 
         const title = this.add.text(width/2, height/2, '大小36邊線5：文字測試123', {
             fontFamily: 'Arial',
@@ -71,7 +71,7 @@ export class MainMenu extends Scene
         this.title.push(title4);
 
         this.player = this.add.image(width/2, height/2 + 580, 'otherch3')
-            .setScale(3);
+            .setScale(1);
 
         EventBus.emit('current-scene-ready', this);
     }
