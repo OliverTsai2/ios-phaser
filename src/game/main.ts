@@ -9,8 +9,8 @@ import { Preloader } from './scenes/Preloader';
 let gameInstance: Phaser.Game | null = null;
 
 // 基準設計尺寸 在電腦設計時要用1080*1920 傳送到手機 640*1136
-const BASE_WIDTH = 1080;
-const BASE_HEIGHT = 1920;
+const BASE_WIDTH = 375;
+const BASE_HEIGHT = 667;
 
 var winH = window.innerHeight
 var winW = window.innerWidth
